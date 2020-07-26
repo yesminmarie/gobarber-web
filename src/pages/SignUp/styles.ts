@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-import signInBackgroundImg from '../../assets/sign-in-background.png';
+import signUpBackgroundImg from '../../assets/sign-up-background.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -51,7 +51,7 @@ export const Content = styled.div`
   }
   /* sinal de maior (>) -> indica que somente as âncoras (a) que estão diretamente dentro de "Content" serão estilizadas */
   > a {
-    color: #ff9000;
+    color: #f4ede8;
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -65,7 +65,7 @@ export const Content = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+      color: ${shade(0.2, '#f4ede8')};
     }
   }
 `;
@@ -73,6 +73,6 @@ export const Content = styled.div`
 export const Background = styled.div`
   flex: 1; /* vai ocupar todo o espaço menos os 700px de "Content" */
 
-  background: url(${signInBackgroundImg}) no-repeat center;
+  background: url(${signUpBackgroundImg}) no-repeat center;
   background-size: cover; /* a imagem ocupa todo o espaço*/
 `;
