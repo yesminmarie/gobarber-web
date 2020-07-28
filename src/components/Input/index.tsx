@@ -1,4 +1,10 @@
-import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
+import React, {
+  InputHTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import { IconBaseProps } from 'react-icons';
 import { useField } from '@unform/core';
 
@@ -17,9 +23,31 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   // a constante inputRef será usada para fazer referência ao elemento input
   // dentro da tag input deve ser inserida a referência
-  const inputRef = useRef(null);
-  // useField recebe como parÂmetro o nome do campo e retorna várias propriedades
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // estado para o foco do input
+  const [isFocused, setIsFocused] = useState(false);
+
+  // estado para verificar se input possui algum valor (usado para deixar o ícone laranja, mesmo após tirar o foco)
+  const [isFilled, setIsFilled] = useState(false);
+
+  // useField recebe como parâmetro o nome do campo e retorna várias propriedades
   const { fieldName, defaultValue, error, registerField } = useField(name);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+  // useCallback para verificar se o input perdeu o foco
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+
+    // ? -> serve para verificar se o inputRef possui algum valor,
+    // se não colocar ? dará erro, pois inputRef é inicializado com valor nulo
+    if (inputRef.current?.value) {
+      // !! -> se inputRef tiver algum valor, ele será true, se estiver vazio será false
+      setIsFilled(!!inputRef.current?.value);
+    }
+  }, []);
 
   // registerField -> faz o registro do input assim que ele for exibido na tela
   useEffect(() => {
@@ -30,11 +58,21 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     });
   }, [fieldName, registerField]);
   return (
-    <Container>
+    <Container isFilled={isFilled} isFocused={isFocused}>
       {Icon && <Icon size={20} />}
-      <input defaultValue={defaultValue} ref={inputRef} {...rest} />
-      {/* ...rest -> passa todas as propriedades em input
+      <input
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        defaultValue={defaultValue}
+        ref={inputRef}
+        {...rest}
+      />
+
+      {error}
+      {/* onFocus -> recebeu o foco
+        onBlur -> perdeu o foco
         defaultValue -> seta um valor inicial, preenche o input com algum valor
+        ...rest -> passa todas as propriedades em input
       */}
     </Container>
   );
