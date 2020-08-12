@@ -5,7 +5,7 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
 // importa o contexto
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -46,9 +46,14 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
       } catch (err) {
-        const errors = getValidationErrors(err);
+        // se o erro for uma instância de Yup.ValidationError
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+        }
+
+        // dispara um toast
       }
     },
     [signIn],
