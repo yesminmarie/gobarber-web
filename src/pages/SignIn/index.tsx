@@ -5,7 +5,8 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
 // importa o contexto
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -24,6 +25,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -41,7 +43,7 @@ const SignIn: React.FC = () => {
           abortEarly: false, // retorna todos os erros de uma vez, não apenas o primeiro
         });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
@@ -54,9 +56,10 @@ const SignIn: React.FC = () => {
         }
 
         // dispara um toast
+        addToast();
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
