@@ -29,6 +29,8 @@
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "camelcase": "off",
     "no-unused-expressions": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
@@ -65,4 +67,5 @@
       "typescript": {}
     }
   }
+
 }
