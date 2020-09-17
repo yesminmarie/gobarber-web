@@ -38,6 +38,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     // se token e user não existirem, retorna o token e o user
     if (token && user) {
+      // define como padrão um cabeçalho com nome authorization com o valor 'Bearer ${token}'
+      // isso vai se aplicar a todas as requisições
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
 
@@ -54,6 +58,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     localStorage.setItem('@GoBarber:token', token);
     localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+
+    // define como padrão um cabeçalho com nome authorization com o valor 'Bearer ${token}'
+    // isso vai se aplicar a todas as requisições
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
   }, []);
