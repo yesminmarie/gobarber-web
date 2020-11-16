@@ -102,9 +102,9 @@ export function useAuth(): AuthContextData {
 
   // se o desenvolvedor não colocar o AuthProvider por volta do app (SignIn, por exemplo)
   // vai disparar um erro porque o contexto não vai existir
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  // if (!context) {
+  //   throw new Error('useAuth must be used within an AuthProvider');
+  // }
 
   return context;
 }
