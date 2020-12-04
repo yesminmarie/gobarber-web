@@ -1,4 +1,4 @@
-<h1 align="center">:rocket: GoBarber-Backend :rocket:</h1>
+<h1 align="center">:rocket: GoBarber-Web :rocket:</h1>
 
 <p align="center">
 <img src="screenshot/GoBarber-web.gif" alt="GoBarber-web"/>
