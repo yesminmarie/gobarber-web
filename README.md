@@ -13,7 +13,7 @@
 </p>
 
 <h1 id="objective">:bulb: Objective</h1>
-</p>This project is the frontend of the application named GoBarber. It allows the customer to make an appointment with a specific barber and the barber can see the appointments of a particular day. This project was developed using React with Context API and Hooks.</p>
+</p>This project is the frontend of the application named GoBarber. It allows the barber to view the list of the appointments of a particular day. This project was developed using React with Context API and Hooks.</p>
 
 <h1 id="technologies">:rocket: Technologies</h1>
 
