@@ -4,7 +4,7 @@
 <img src="screenshot/GoBarber-web.gif" alt="GoBarber-web"/>
 </p>
 
-<p align="center">This project was developed in GoStack Bootcamp from Rocketseat. It is the frontend of a application for barbershops named GoBarber. The backend can be accessed <a href="https://github.com/yesminmarie/gobarber-backend">here</a> and the mobile version <a href="https://github.com/yesminmarie/gobarber-mobile">here</a>.</p>
+<p align="center">This project was developed in GoStack Bootcamp from Rocketseat. It is the frontend of an application for barbershops named GoBarber. The backend can be accessed <a href="https://github.com/yesminmarie/gobarber-backend">here</a> and the mobile version <a href="https://github.com/yesminmarie/gobarber-mobile">here</a>.</p>
 
 <p align="center">
  <a href="#objective">Objective</a> •
